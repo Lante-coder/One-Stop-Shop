@@ -55,7 +55,7 @@
 
             </div>
 
-            <!-- These ae Dummy images most of the mages will be added by java Script -->
+            <!-- These are Dummy images most of the mages will be added by java Script -->
 
             <div class="products-container">
                 <article class="product-card">
@@ -189,9 +189,108 @@
         </section>  
 
 
-        <!-- cart section -->
+    <!-- cart section -->
+    <section>
+        <!-- Cart Header -->
+        <div class="cart-header">
+            <h1 class="page-title">Shopping Cart</h1>
+            <p id="cart-summary" class="page-description">3 items in your cart</p>
+        </div>
 
-        
+        <!-- Empty Cart State -->
+        <div id="empty-cart" class="empty-cart hidden">
+            <div class="empty-cart-icon">🛒</div>
+            <h2 class="empty-cart-title">Your cart is empty</h2>
+            <p class="empty-cart-text">Start shopping to add items to your cart!</p>
+            <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+        </div>
+
+        <div id="cart-content" class="cart-content">
+
+            <!-- Dummy Variables to be deleted once we include js-->
+
+            <!-- Cart Items List -->
+            <div class="cart-items-section">
+                <div id="cart-items" class="cart-items">
+                    
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item">
+                        <div class="product-image-wrapper">
+                            <div class="product-image">
+                                <img src="/images/logo.png" alt="Wireless Headphones">
+                            </div>
+                        </div>
+                        
+                        <div class="product-details">
+                            <h3 class="product-name">Wireless Bluetooth Headphones</h3>
+                            <p class="product-description">Premium quality sound with noise cancellation</p>
+                            <div class="product-price">Ksh 89.99</div>
+                        </div>
+                        
+                        <div class="quantity-controls">
+                            <button class="quantity-btn">−</button>
+                            <input type="number" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        
+                        <button class="delete-btn"><i class="fa-solid fa-trash"></i>Remove</button>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item">
+                        <div class="product-image-wrapper">
+                            <div class="product-image">
+                                <img src="/images/logo.png" alt="Smartphone Case">
+                            </div>
+                        </div>
+                        
+                        <div class="product-details">
+                            <h3 class="product-name">Premium Smartphone Case</h3>
+                            <p class="product-description">Durable protection with elegant design</p>
+                            <div class="product-price">Ksh 24.99</div>
+                        </div>
+                        
+                         <div class="quantity-controls">
+                            <button class="quantity-btn">−</button>
+                            <input type="number" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        
+                       <button class="delete-btn"><i class="fa-solid fa-trash"></i>Remove</button>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item">
+                        <div class="product-image-wrapper">
+                            <div class="product-image">
+                                <img src="/images/logo.png" alt="USB Cable">
+                            </div>
+                        </div>
+                        
+                        <div class="product-details">
+                            <h3 class="product-name">USB-C Charging Cable</h3>
+                            <p class="product-description">Fast charging cable - 6ft length</p>
+                            <div class="product-price">ksh 12.99</div>
+                        </div>
+                        
+                         <div class="quantity-controls">
+                            <button class="quantity-btn">−</button>
+                            <input type="number" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        
+                        <button class="delete-btn"><i class="fa-solid fa-trash"></i>Remove</button>
+                    </div>
+
+                </div>
+            </div>
+
+ 
+        </div>
+    
+    </section>
+
+
 
     </main>
 
