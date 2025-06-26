@@ -12,9 +12,9 @@
     <header class="nav-container">
 
         <div class="logo-container">
-            <a href="index.html">
-                <img class="logo-h" src="/images/logo-removebg-preview.png" alt="One Stop Shop Logo">
-            </a>
+
+            <img class="logo-h" src="/images/logo-removebg-preview.png" alt="One Stop Shop Logo">
+
         </div>
         
         <!-- Search Bar -->
@@ -27,20 +27,170 @@
                   
                         
             </div>
-        </div>
+        </div> 
 
-        <!-- Links to navigate around the Website  -->
-        <nav class="nav">
+        <!-- Add to Cart Button -->
+        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Add to Cart <span class="counter">(0)</span></button>
+                       
+        </header>
 
-            <ul class="nav-buttons">
-                <li><a class="Links" href="index.html">Home</a></li>
-                <li><a class="Links" href="shop.html">Shop</a></li>
-                <li><a class="Links" href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
-            </ul>
+    <!-- Welcome Section -->
+    <main>
 
-        </nav>
+        <section class="welcome">
 
-    </header>
+            <h1 class="welcome-title">Welcome To One Stop Online Shop</h1>
+            <p class="welcome-subtitle">Shop anytime, anywhere, from the comfort of your home or on the go.</p>
+            <a href="shop.html" class="welcome-cta">Start Shopping</a>
+
+        </section>
+
+    <!-- Features Section -->
+        <section class="features" id="products-section">
+
+            <div class="features-header">
+
+                <h2 class="features-title">Featured Products</h2>
+                <p class="features-subtitle">Beyond Shopping: A Complete Experience.</p>
+
+            </div>
+
+            <!-- These ae Dummy images most of the mages will be added by java Script -->
+
+            <div class="products-container">
+                <article class="product-card">
+
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="Premium Wireless Headphones">
+                    </div>
+
+                    <div class="product-info">
+                        <h3 class="product-name">Premium Wireless Headphones</h3>
+                        <p class="product-price">Ksh 170</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                        Add to Cart
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="Smart Fitness Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Smart Fitness Watch</h3>
+                        <p class="product-price">Ksh 250</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to Cart
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="Bluetooth Speaker">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Bluetooth Speaker</h3>
+                        <p class="product-price">Ksh 320</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to Cart
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="Wireless Mouse">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Wireless Mouse</h3>
+                        <p class="product-price">Ksh 180</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to Cart
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="USB-C Cable">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">USB-C Cable</h3>
+                        <p class="product-price">Ksh 120</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to Cart
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <img class="product-image" src="/images/logo.png" alt="Phone Case">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Phone Case</h3>
+                        <p class="product-price">Ksh 95</p>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to Cart
+                    </button>
+                </article>
+            </div>
+        </section>  
+
+    </main>
+
+     
 
 
 </body>

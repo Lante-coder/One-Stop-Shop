@@ -68,27 +68,16 @@ body {
     opacity: 0.7;
 }
 
-/* Navigation Links */
-.nav {
-    flex: 0 0 auto;
-}
-
-.nav-buttons {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-buttons li a {
-    color: #FFBB94;
+.add-to-cart{
+    color:#4C1D3D;
     text-decoration: none;
     font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 1rem 2rem;
+    border-radius: 100px;
     transition: all 0.3s ease;
 }
 
-.nav-buttons li a:hover{
+.add-to-cart:hover{
 
     background-color: #FB9590;
     color: #4C1D3D;
