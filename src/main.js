@@ -130,9 +130,35 @@ function rateProduct(productId, rating) {
         
         
         // To Show confirmation message by a module
-        
+
         
         
 
     }
+}
+
+// Visual feedback when hovering over stars
+function highlightStars(productId, hoverRating) {
+
+    // Find the product card
+
+    const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+
+    if (!productCard) return;
+    
+    // Find all star elements for this product
+
+    const stars = productCard.querySelectorAll('.fa-star');
+    
+    // Update star appearance based on hover
+
+    stars.forEach((star, index) => {
+        if (index < hoverRating) {
+            star.className = 'fa-solid fa-star';
+            star.style.color = '#FFD700'; 
+        } else {
+            star.className = 'fa-regular fa-star';
+            star.style.color = '#ccc';
+        }
+    });
 }
