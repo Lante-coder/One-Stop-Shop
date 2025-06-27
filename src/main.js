@@ -370,8 +370,21 @@ function updateCartTotals() {
     const tax = subtotal * 0.16;
     const total = subtotal + shipping + tax;
     
-    // Update the display to be updated
+    // Update the display
+    updateElement('subtotal', `Ksh ${Math.round(subtotal)}`);
+    updateElement('shipping', `Ksh ${shipping}`);
+    updateElement('tax', `Ksh ${Math.round(tax)}`);
+    updateElement('total', `Ksh ${Math.round(total)}`);
 
+}
+
+// Function to update element text
+function updateElement(id, text) {
+
+    const element = document.getElementById(id);
+    if (element) {
+        element.textContent = text;
+    }
 }
 
 
