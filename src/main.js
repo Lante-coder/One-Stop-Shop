@@ -35,3 +35,22 @@ function getProductsFromAPI() {
             // create a function to show error message and call it 
         });
 }
+
+// Display products on the webpage
+
+// This Function is to be called in the getProduct API 
+function showProductsOnPage() {
+    console.log('Showing products on page...');
+    
+    // Get the container where we want to put products
+    const container = document.querySelector('.products-container');
+    
+    // create a variable that Clears any existing content in the html
+    
+    
+    // create a variable that Shows only first 12 products
+
+    
+    // create a Loop for each product and create HTML for it
+
+}
