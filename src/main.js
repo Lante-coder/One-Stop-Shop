@@ -480,7 +480,7 @@ function processCheckout() {
 
     console.log("Checkout Summary:", checkoutSummary)
     
-}
+
 
 
 
@@ -510,7 +510,7 @@ function processCheckout() {
       console.log("Order completed successfully")
     }, 2000)
   }
-
+}
 
 // Search for products
 function searchProducts(searchText) {
