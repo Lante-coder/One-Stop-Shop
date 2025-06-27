@@ -46,6 +46,12 @@ function showProductsOnPage() {
     
     // Get the container where we want to put products
     const container = document.querySelector('.products-container');
+
+
+    if (!container) {
+        console.log('Products container not found!');
+        return;
+    }
     
     // create a variable that Clears any existing content in the html
 
@@ -74,10 +80,16 @@ function createProductHTML(product) {
 
     const productDiv = document.createElement('article');
     productDiv.className = 'product-card';
+
+    productDiv.setAttribute('data-product-id', product.id);
     
     // Convert price from dollars to Kenyan shillings
 
     const priceInKsh = Math.round(product.price * 130);
+
+    const shortTitle = product.title.length > 30 ? 
+    product.title.substring(0, 30) + '...' : 
+    product.title;
        
     // Create the HTML content
 
@@ -89,7 +101,7 @@ function createProductHTML(product) {
             <h3 class="product-name">${shortTitle}</h3>
             <p class="product-price">Ksh ${priceInKsh}</p>
             <div class="product-rating">
-                ${createInteractiveStars(product.rating.rate, product.id)}
+                ${createStars(product.rating.rate, product.id)}
             </div>
         </div>
         <button class="add-to-cart" onclick="addToCart(${product.id})">
@@ -226,6 +238,8 @@ function addToCart(productId) {
         shoppingCart.push(cartItem);
         console.log('Added new item to cart:', product.title);
     }
+        // Add event listener
+        setupCartEventListeners();
     
     // Update the cart display
         updateCartNumber();
@@ -281,7 +295,8 @@ function showCartItems() {
     cartContainer.appendChild(cartItemHTML);
     });
 
-    
+
+        addCartItemEventListeners();
     // Update the total prices 
         updateCartTotals(); 
     
@@ -311,17 +326,41 @@ function createCartItemHTML(item) {
             <div class="product-price">Ksh ${priceInKsh}</div>
         </div>
         <div class="quantity-controls">
-            <button class="quantity-btn">−</button>
+            <button class="quantity-btn" onclick="changeQuantity(${item.id}, -1)">−</button>
             <input type="number" class="quantity-input" value="${item.quantity}" readonly>
-            <button class="quantity-btn">+</button>
+            <button class="quantity-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
         </div>
-        <button class="delete-btn">
+        <button class="delete-btn" onclick="removeFromCart(${item.id})">
             <i class="fa-solid fa-trash"></i>
             Remove
         </button>
     `;
     
     return cartDiv;
+}
+
+// Add function for cart event listener
+function setupCartEventListeners() {
+    // Quantity buttons
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const cartItem = e.target.closest('.cart-item');
+            const productId = parseInt(cartItem.getAttribute('data-product-id'));
+            const action = e.target.getAttribute('data-action');
+            const change = action === 'increase' ? 1 : -1;
+            changeQuantity(productId, change);
+        });
+    });
+
+    // Remove buttons
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const cartItem = e.target.closest('.cart-item');
+            const productId = parseInt(cartItem.getAttribute('data-product-id'));
+            removeFromCart(productId);
+        });
+    });
 }
 
 //Change quantity of item in cart
@@ -372,7 +411,7 @@ function updateCartTotals() {
     
     // Calculate subtotal
     shoppingCart.forEach(item => {
-        const priceInKsh = item.price * 140;
+        const priceInKsh = item.price * 130;
         subtotal += priceInKsh * item.quantity;
     });
     
