@@ -262,11 +262,54 @@ function showCartItems() {
     if (!cartContainer) return;
     
     // Clear existing items
+    cartContainer.innerHTML = '';
 
     
-    // Add each cart item to be updated one i add a create cart function
+    // Add each cart item
+    shoppingCart.forEach(item => {
+    const cartItemHTML = createCartItemHTML(item);
+    cartContainer.appendChild(cartItemHTML);
+    });
 
     
     // Update the total prices to be updated 
     
 }
+
+// Create HTML for cart item
+function createCartItemHTML(item) {
+
+    const cartDiv = document.createElement('div');
+    cartDiv.className = 'cart-item';
+    cartDiv.setAttribute('data-product-id', item.id);
+    
+    const priceInKsh = Math.round(item.price * 130);
+    const shortTitle = item.title.length > 30 ? 
+        item.title.substring(0, 30) + '...' : 
+        item.title;
+    
+    cartDiv.innerHTML = `
+        <div class="product-image-wrapper">
+            <div class="product-image">
+                <img src="${item.image}" alt="${item.title}">
+            </div>
+        </div>
+        <div class="product-details">
+            <h3 class="product-name">${shortTitle}</h3>
+            <p class="product-description">Quality product from our store</p>
+            <div class="product-price">Ksh ${priceInKsh}</div>
+        </div>
+        <div class="quantity-controls">
+            <button class="quantity-btn">−</button>
+            <input type="number" class="quantity-input" value="${item.quantity}" readonly>
+            <button class="quantity-btn">+</button>
+        </div>
+        <button class="delete-btn">
+            <i class="fa-solid fa-trash"></i>
+            Remove
+        </button>
+    `;
+    
+    return cartDiv;
+}
+
