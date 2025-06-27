@@ -223,3 +223,30 @@ function addToCart(productId) {
     
     // Update the cart display by calling some functions to be added 
 }
+
+//  Update the cart number in navigation
+
+function updateCartNumber() {
+
+    // Count total items in cart
+    
+    let totalItems = 0;
+    shoppingCart.forEach(item => {
+        totalItems += item.quantity;
+    });
+    
+    // Update the counter in navigation
+    const counter = document.querySelector('.counter');
+    if (counter) {
+        counter.textContent = `(${totalItems})`;
+    }
+    
+    // Update cart summary text
+    const cartSummary = document.getElementById('cart-summary');
+
+    if (cartSummary) {
+        cartSummary.textContent = `${totalItems} items in your cart`;
+    }
+    
+    // Show or hide empty cart message to be updated 
+}
