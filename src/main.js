@@ -183,3 +183,43 @@ function updateProductStarDisplay(productId, newRating) {
 
 }
 
+
+// Add item to shopping cart
+function addToCart(productId) {
+    console.log('Adding product to cart:', productId);
+    
+    // Find the product with this ID
+    const product = allProducts.find(p => p.id === productId);
+    
+    if (!product) {
+        console.log('Product not found!');
+        return;
+    }
+    
+    // Check if product is already in cart
+    const existingItem = shoppingCart.find(item => item.id === productId);
+    
+    if (existingItem) {
+
+        // If already in cart, increase quantity
+
+        existingItem.quantity += 1;
+        console.log('Increased quantity for:', product.title);
+
+    } else {
+
+        // If not in cart, add it with quantity 1
+
+        const cartItem = {
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        };
+        shoppingCart.push(cartItem);
+        console.log('Added new item to cart:', product.title);
+    }
+    
+    // Update the cart display by calling some functions to be added 
+}
