@@ -354,4 +354,24 @@ function removeFromCart(productId) {
     //To add a show message Module after creating the function    
 }
 
+//Calculate and show cart totals
+
+function updateCartTotals() {
+    let subtotal = 0;
+    
+    // Calculate subtotal
+    shoppingCart.forEach(item => {
+        const priceInKsh = item.price * 140;
+        subtotal += priceInKsh * item.quantity;
+    });
+    
+    // Calculate other costs
+    const shipping = subtotal > 0 ? 500 : 0;  // Shipping cost
+    const tax = subtotal * 0.16;
+    const total = subtotal + shipping + tax;
+    
+    // Update the display to be updated
+
+}
+
 
