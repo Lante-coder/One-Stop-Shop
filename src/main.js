@@ -98,3 +98,19 @@ function createProductHTML(product) {
     
     return productDiv;
 }
+// Create star rating display
+function createStars(currentRating = 0, productId) {
+
+    let stars = '';
+    const fullStars = Math.floor(currentRating);
+    
+    for (let i = 1; i <= 5; i++) {
+        const starClass = i <= fullStars ? 'fa-solid' : 'fa-regular';
+        const starColor = i <= fullStars ? '#FFD700' : '#ccc';
+                //  To add some event listeners on this line of code after including them on my file
+        stars += `<i class="${starClass} fa-star"></i>`;
+    }
+    
+    return stars;
+}
+
