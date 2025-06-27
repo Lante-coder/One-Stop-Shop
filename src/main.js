@@ -386,5 +386,22 @@ function updateElement(id, text) {
         element.textContent = text;
     }
 }
+// Show or hide empty cart message
+
+function showOrHideEmptyCart() {
+    
+    const emptyCart = document.getElementById('empty-cart');
+    const cartContent = document.getElementById('cart-content');
+    
+    if (shoppingCart.length === 0) {
+
+        if (emptyCart) emptyCart.classList.remove('hidden');
+        if (cartContent) cartContent.classList.add('hidden');
+    } else {
+    
+        if (emptyCart) emptyCart.classList.add('hidden');
+        if (cartContent) cartContent.classList.remove('hidden');
+    }
+}
 
 
