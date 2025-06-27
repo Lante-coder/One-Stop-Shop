@@ -405,3 +405,69 @@ function showOrHideEmptyCart() {
 }
 
 
+function setupButtonClicks() {
+
+    // Setting up search functionality
+
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+
+            searchProducts(e.target.value);
+        });
+
+    }
+    
+    // Setting up cart navigation button
+
+    const cartButton = document.querySelector('.add-to-cart-nav');
+    if (cartButton) {
+        cartButton.addEventListener('click', function() {
+            // to add a function to scroll cart 
+        });
+    }
+}
+
+// Search for products
+function searchProducts(searchText) {
+    if (searchText.trim() === '') {
+        
+        // If search is empty, show all products
+        showProductsOnPage();
+        return;
+    }
+    
+    // Filter products that match search
+
+    const filteredProducts = allProducts.filter(product => {
+        const titleMatch = product.title.toLowerCase().includes(searchText.toLowerCase());
+        const categoryMatch = product.category.toLowerCase().includes(searchText.toLowerCase());
+        return titleMatch || categoryMatch;
+    });
+    
+    // Show filtered products to be updated
+    showFilteredProducts(filteredProducts);
+
+}
+
+// Show filtered products
+
+function showFilteredProducts(products) {
+    const container = document.querySelector('.products-container');
+    container.innerHTML = '';
+    
+    if (products.length === 0) {
+        container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                <h3 style="color: #4C1D3D;">No products found</h3>
+                <p style="color: #A33757;">Try searching for something else</p>
+            </div>
+        `;
+        return;
+    }
+    
+    products.forEach(product => {
+        const productHTML = createProductHTML(product);
+        container.appendChild(productHTML);
+    });
+}
