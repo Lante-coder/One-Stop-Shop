@@ -238,8 +238,6 @@ function addToCart(productId) {
         shoppingCart.push(cartItem);
         console.log('Added new item to cart:', product.title);
     }
-        // Add event listener
-        setupCartEventListeners();
     
     // Update the cart display
         updateCartNumber();
@@ -295,8 +293,6 @@ function showCartItems() {
     cartContainer.appendChild(cartItemHTML);
     });
 
-
-        addCartItemEventListeners();
     // Update the total prices 
         updateCartTotals(); 
     
@@ -337,30 +333,6 @@ function createCartItemHTML(item) {
     `;
     
     return cartDiv;
-}
-
-// Add function for cart event listener
-function setupCartEventListeners() {
-    // Quantity buttons
-    document.querySelectorAll('.quantity-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const cartItem = e.target.closest('.cart-item');
-            const productId = parseInt(cartItem.getAttribute('data-product-id'));
-            const action = e.target.getAttribute('data-action');
-            const change = action === 'increase' ? 1 : -1;
-            changeQuantity(productId, change);
-        });
-    });
-
-    // Remove buttons
-
-    document.querySelectorAll('.delete-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const cartItem = e.target.closest('.cart-item');
-            const productId = parseInt(cartItem.getAttribute('data-product-id'));
-            removeFromCart(productId);
-        });
-    });
 }
 
 //Change quantity of item in cart
@@ -406,26 +378,27 @@ function removeFromCart(productId) {
 
 //Calculate and show cart totals
 
-function updateCartTotals() {
+function getCartTotals() {
     let subtotal = 0;
-    
-    // Calculate subtotal
     shoppingCart.forEach(item => {
         const priceInKsh = item.price * 130;
         subtotal += priceInKsh * item.quantity;
     });
-    
-    // Calculate other costs
-    const shipping = subtotal > 0 ? 500 : 0;  // Shipping cost
+
+    const shipping = subtotal > 0 ? 500 : 0;
     const tax = subtotal * 0.16;
     const total = subtotal + shipping + tax;
-    
-    // Update the display
-    updateElement('subtotal', `Ksh ${Math.round(subtotal)}`);
-    updateElement('shipping', `Ksh ${shipping}`);
-    updateElement('tax', `Ksh ${Math.round(tax)}`);
-    updateElement('total', `Ksh ${Math.round(total)}`);
 
+    return { subtotal, shipping, tax, total };
+}
+
+function updateCartTotals() {
+    const totals = getCartTotals();
+    
+    updateElement('subtotal', `Ksh ${Math.round(totals.subtotal)}`);
+    updateElement('shipping', `Ksh ${totals.shipping}`);
+    updateElement('tax', `Ksh ${Math.round(totals.tax)}`);
+    updateElement('total', `Ksh ${Math.round(totals.total)}`);
 }
 
 // Function to update element text
@@ -477,7 +450,67 @@ function setupButtonClicks() {
             scrollToCart()
         });
     }
+    // Setting up checkout button
+    const checkoutButton = document.querySelector('.btn-success');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent any default behavior
+            processCheckout();
+        });
+    }
 }
+
+// Added process Checkout function
+function processCheckout() {
+
+    if (shoppingCart.length === 0) {
+        showMessage("Your cart is empty!");
+        return;
+    }
+
+    const totals = getCartTotals();
+    const checkoutSummary = {
+
+        subtotal: Math.round(totals.subtotal),
+        shipping: totals.shipping,
+        tax: Math.round(totals.tax),
+        total: Math.round(totals.total),
+
+    };
+
+    console.log("Checkout Summary:", checkoutSummary)
+    
+}
+
+
+
+  // Show checkout confirmation
+  const confirmCheckout = confirm(
+    `Checkout Summary:\n\n` +
+      `Items: ${checkoutSummary.totalQuantity}\n` +
+      `Subtotal: Ksh ${checkoutSummary.subtotal.toLocaleString()}\n` +
+      `Shipping: Ksh ${checkoutSummary.shipping.toLocaleString()}\n` +
+      `Tax: Ksh ${checkoutSummary.tax.toLocaleString()}\n` +
+      `Total: Ksh ${checkoutSummary.total.toLocaleString()}\n\n` +
+      `Proceed with checkout?`,
+  )
+
+  if (confirmCheckout) {
+    // Simulate checkout process
+    showMessage("Processing your order...")
+
+    setTimeout(() => {
+      // Clear the cart after successful checkout
+      shoppingCart = []
+      updateCartNumber()
+      showCartItems()
+      showMessage("Order placed successfully! Thank you for your purchase.")
+
+      // Optional: Redirect to a thank you page or show order confirmation
+      console.log("Order completed successfully")
+    }, 2000)
+  }
+
 
 // Search for products
 function searchProducts(searchText) {
@@ -558,7 +591,7 @@ function showMessage(message) {
         if (messageBox.parentNode) {
             messageBox.parentNode.removeChild(messageBox);
         }
-    }, 2000);
+    }, 3000);
 }
 
 //Show error message
