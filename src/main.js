@@ -249,4 +249,24 @@ function updateCartNumber() {
     }
     
     // Show or hide empty cart message to be updated 
+
+
+}
+
+// Show cart items in the cart section
+
+function showCartItems() {
+
+    const cartContainer = document.getElementById('cart-items');
+
+    if (!cartContainer) return;
+    
+    // Clear existing items
+
+    
+    // Add each cart item to be updated one i add a create cart function
+
+    
+    // Update the total prices to be updated 
+    
 }
