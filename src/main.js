@@ -162,3 +162,24 @@ function highlightStars(productId, hoverRating) {
         }
     });
 }
+
+// Reset stars when mouse leaves
+function resetStars(productId, originalRating) {
+
+    updateProductStarDisplay(productId, originalRating);
+}
+
+// Update star display after rating
+
+function updateProductStarDisplay(productId, newRating) {
+
+    const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+    if (!productCard) return;
+    
+    const ratingDiv = productCard.querySelector('.product-rating');
+    if (ratingDiv) {
+        ratingDiv.innerHTML = createStars(newRating, productId);
+    }
+
+}
+
