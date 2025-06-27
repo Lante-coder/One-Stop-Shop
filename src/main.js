@@ -8,14 +8,17 @@ let shoppingCart = [];  // stores items added to cart
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded! Starting One Stop Shop');
 
-    // To Call startApp function finnised writing rest of he code.
+    startApp()
+    
 });
 
 // Main function that starts everything
 
 function startApp() {
 
-    // this function is going to do some callbacks to  
+    getProductsFromAPI();
+    setupButtonClicks();
+    updateCartNumber();
 }
 
 // Get products from the Fake Store API
@@ -28,17 +31,16 @@ function getProductsFromAPI() {
         .then(products => {
             console.log('Got products:', products);
             allProducts = products;  
-            // Create a function for the tems to display on the page and call it     
+            showProductsOnPage();      
         })
         .catch(error => {
             console.log('Error getting products:', error);
-            // create a function to show error message and call it 
+            showErrorMessage();
         });
 }
 
 // Display products on the webpage
 
-// This Function is to be called in the getProduct API 
 function showProductsOnPage() {
     console.log('Showing products on page...');
     
@@ -79,7 +81,7 @@ function createProductHTML(product) {
        
     // Create the HTML content
 
-    productDiv.innerHTML = `
+ productDiv.innerHTML = `
         <div class="product-image-container">
             <img class="product-image" src="${product.image}" alt="${product.title}">
         </div>
@@ -87,10 +89,10 @@ function createProductHTML(product) {
             <h3 class="product-name">${shortTitle}</h3>
             <p class="product-price">Ksh ${priceInKsh}</p>
             <div class="product-rating">
-                ${createStars(product.rating.rate)}
+                ${createInteractiveStars(product.rating.rate, product.id)}
             </div>
         </div>
-        <button class="add-to-cart">
+        <button class="add-to-cart" onclick="addToCart(${product.id})">
             <i class="fa-solid fa-cart-shopping"></i>
             Add to Cart
         </button>
@@ -108,7 +110,11 @@ function createStars(currentRating = 0, productId) {
         const starClass = i <= fullStars ? 'fa-solid' : 'fa-regular';
         const starColor = i <= fullStars ? '#FFD700' : '#ccc';
                 //  To add some event listeners on this line of code after including them on my file
-        stars += `<i class="${starClass} fa-star"></i>`;
+        stars += `<i class="${starClass} fa-star" 
+                     onclick="rateProduct(${productId}, ${i})" 
+                     onmouseover="highlightStars(${productId}, ${i})"
+                     onmouseleave="resetStars(${productId}, ${currentRating})"
+                     style="cursor: pointer; color: ${starColor}; margin-right: 2px;"></i>`;
     }
     
     return stars;
@@ -127,11 +133,11 @@ function rateProduct(productId, rating) {
         product.rating.rate = rating;
         
         // To Update the display immediately
+        updateProductStarDisplay(productId, rating);
         
         
         // To Show confirmation message by a module
-
-        
+        showMessage(`You rated this product ${rating} stars!`);   
         
 
     }
@@ -221,7 +227,10 @@ function addToCart(productId) {
         console.log('Added new item to cart:', product.title);
     }
     
-    // Update the cart display by calling some functions to be added 
+    // Update the cart display
+        updateCartNumber();
+        showCartItems();
+        showMessage(product.title + ' added to cart!'); 
 }
 
 //  Update the cart number in navigation
@@ -248,7 +257,8 @@ function updateCartNumber() {
         cartSummary.textContent = `${totalItems} items in your cart`;
     }
     
-    // Show or hide empty cart message to be updated 
+    // Show or hide empty cart message 
+        showOrHideEmptyCart();
 
 
 }
@@ -272,7 +282,8 @@ function showCartItems() {
     });
 
     
-    // Update the total prices to be updated 
+    // Update the total prices 
+        updateCartTotals(); 
     
 }
 
@@ -348,10 +359,10 @@ function removeFromCart(productId) {
     console.log('Removed item from cart');
     
     // Update displays
-
     updateCartNumber();
     showCartItems();
-    //To add a show message Module after creating the function    
+    showMessage('Item removed from cart');
+
 }
 
 //Calculate and show cart totals
