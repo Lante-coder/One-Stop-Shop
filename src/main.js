@@ -313,3 +313,28 @@ function createCartItemHTML(item) {
     return cartDiv;
 }
 
+//Change quantity of item in cart
+
+function changeQuantity(productId, change) {
+
+    const item = shoppingCart.find(item => item.id === productId);
+    
+    if (item) {
+        item.quantity += change;
+        
+        // Don't let quantity go below 1
+
+        if (item.quantity < 1) {
+            item.quantity = 1;
+        }
+        
+        console.log('Changed quantity for:', item.title, 'New quantity:', item.quantity);
+        
+        // Update displays
+        updateCartNumber();
+        showCartItems();
+    }
+}
+
+
+
