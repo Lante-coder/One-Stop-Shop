@@ -114,3 +114,25 @@ function createStars(currentRating = 0, productId) {
     return stars;
 }
 
+// Handle user rating when they click a star
+function rateProduct(productId, rating) {
+    console.log(`User rated product ${productId} with ${rating} stars`);
+    
+    // Find the product and update its rating
+
+    const product = allProducts.find(p => p.id === productId);
+    if (product) {
+
+        // Update the product's rating
+        product.rating.rate = rating;
+        
+        // To Update the display immediately
+        
+        
+        // To Show confirmation message by a module
+        
+        
+        
+
+    }
+}
