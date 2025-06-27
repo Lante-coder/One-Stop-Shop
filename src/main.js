@@ -423,7 +423,8 @@ function setupButtonClicks() {
     const cartButton = document.querySelector('.add-to-cart-nav');
     if (cartButton) {
         cartButton.addEventListener('click', function() {
-            // to add a function to scroll cart 
+            
+            scrollToCart()
         });
     }
 }
@@ -431,7 +432,7 @@ function setupButtonClicks() {
 // Search for products
 function searchProducts(searchText) {
     if (searchText.trim() === '') {
-        
+
         // If search is empty, show all products
         showProductsOnPage();
         return;
@@ -470,4 +471,65 @@ function showFilteredProducts(products) {
         const productHTML = createProductHTML(product);
         container.appendChild(productHTML);
     });
+}
+
+// Scroll to cart section
+function scrollToCart() {
+    const cartSection = document.querySelector('.cart-header');
+    if (cartSection) {
+        cartSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Show messages to user
+
+function showMessage(message) {
+
+    // Create message box
+    const messageBox = document.createElement('div');
+    messageBox.textContent = message;
+    messageBox.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4C1D3D;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    // Add to page
+    document.body.appendChild(messageBox);
+    
+
+    setTimeout(() => {
+        if (messageBox.parentNode) {
+            messageBox.parentNode.removeChild(messageBox);
+        }
+    }, 2000);
+}
+
+//Show error message
+
+function showErrorMessage() {
+    const container = document.querySelector('.products-container');
+    if (container) {
+        container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                <h3 style="color: #DC586D;">Oops! Something went wrong</h3>
+                <p style="color: #A33757;">We couldn't load the products. Please try again later.</p>
+                <button onclick="getProductsFromAPI()" style="
+                    background-color: #4C1D3D;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                    cursor: pointer;
+                ">Try Again</button>
+            </div>
+        `;
+    }
 }
