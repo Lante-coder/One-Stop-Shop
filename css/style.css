@@ -183,6 +183,7 @@ body {
     object-fit: cover;
     border-radius: 10px;
     background-color: #FFBB94;
+    justify-self: center;
 }
 
 .product-info {
