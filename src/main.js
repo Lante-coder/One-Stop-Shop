@@ -46,11 +46,55 @@ function showProductsOnPage() {
     const container = document.querySelector('.products-container');
     
     // create a variable that Clears any existing content in the html
+
+    container.innerHTML = '';    
     
-    
-    // create a variable that Shows only first 12 products
+    //variable that Shows only first 12 products
+
+    const productsToShow = allProducts.slice(0, 12);
 
     
-    // create a Loop for each product and create HTML for it
+    //Loop for each product and create HTML for it
 
+    productsToShow.forEach(product => {
+    const productHTML = createProductHTML(product);
+    container.appendChild(productHTML);
+    
+    });
+
+}
+
+// Creating HTML for one product
+
+function createProductHTML(product) {
+
+    // Create a new div element
+
+    const productDiv = document.createElement('article');
+    productDiv.className = 'product-card';
+    
+    // Convert price from dollars to Kenyan shillings
+
+    const priceInKsh = Math.round(product.price * 130);
+       
+    // Create the HTML content
+
+    productDiv.innerHTML = `
+        <div class="product-image-container">
+            <img class="product-image" src="${product.image}" alt="${product.title}">
+        </div>
+        <div class="product-info">
+            <h3 class="product-name">${shortTitle}</h3>
+            <p class="product-price">Ksh ${priceInKsh}</p>
+            <div class="product-rating">
+                ${createStars(product.rating.rate)}
+            </div>
+        </div>
+        <button class="add-to-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add to Cart
+        </button>
+    `;
+    
+    return productDiv;
 }
