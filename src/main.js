@@ -337,4 +337,21 @@ function changeQuantity(productId, change) {
 }
 
 
+// Remove item from cart
+
+function removeFromCart(productId) {
+
+    // Filter out the item we want to remove
+
+    shoppingCart = shoppingCart.filter(item => item.id !== productId);
+    
+    console.log('Removed item from cart');
+    
+    // Update displays
+
+    updateCartNumber();
+    showCartItems();
+    //To add a show message Module after creating the function    
+}
+
 
